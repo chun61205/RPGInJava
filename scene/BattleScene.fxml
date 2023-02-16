@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scene.BattleScene">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e3e3" height="168.0" layoutY="206.0" stroke="BLACK" strokeType="INSIDE" width="640.0" />
+            <Label fx:id="dialogue" alignment="TOP_LEFT" layoutX="9.0" layoutY="217.0" onMouseClicked="#closeDialogue" prefHeight="147.0" prefWidth="622.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="playerBattleImageView" fitHeight="71.0" fitWidth="71.0" layoutX="52.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="monsterBattleImageView1" fitHeight="71.0" fitWidth="71.0" layoutX="458.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="monsterBattleImageView2" fitHeight="71.0" fitWidth="71.0" layoutX="458.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="attackButton" layoutX="26.0" layoutY="230.0" mnemonicParsing="false" onAction="#attackButtonAction" prefHeight="54.0" prefWidth="122.0" text="攻擊" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="itemButton" layoutX="26.0" layoutY="291.0" mnemonicParsing="false" onAction="#itemButtonAction" prefHeight="54.0" prefWidth="122.0" text="道具" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="magicButton" disable="true" layoutX="162.0" layoutY="230.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="122.0" text="魔法" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="retrieveButton" layoutX="162.0" layoutY="291.0" mnemonicParsing="false" onAction="#retrieveButtonAction" prefHeight="54.0" prefWidth="122.0" text="逃跑" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ProgressBar fx:id="playerHPBar" layoutX="320.0" layoutY="265.0" prefWidth="200.0" progress="0.0" visible="false" />
+            <ProgressBar fx:id="playerMPBar" layoutX="320.0" layoutY="326.0" prefWidth="200.0" progress="0.0" visible="false" />
+            <Label fx:id="hpLabel" layoutX="320.0" layoutY="238.0" prefHeight="26.0" prefWidth="26.0" text="HP" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="mpLabel" layoutX="320.0" layoutY="299.0" prefHeight="26.0" prefWidth="26.0" text="MP" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="hpValueLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="448.0" layoutY="244.0" prefHeight="20.0" prefWidth="71.0" text="/" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="mpValueLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="448.0" layoutY="306.0" prefHeight="20.0" prefWidth="71.0" text="/" visible="false">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="strLabel" layoutX="530.0" layoutY="230.0" prefHeight="18.0" prefWidth="89.0" text="STR:" visible="false" />
+            <Label fx:id="intLabel" layoutX="530.0" layoutY="263.0" prefHeight="18.0" prefWidth="89.0" text="INT:" visible="false" />
+            <Label fx:id="dexLabel" layoutX="530.0" layoutY="299.0" prefHeight="18.0" prefWidth="89.0" text="DEX:" visible="false" />
+            <Label fx:id="playerBattleName" layoutX="57.0" layoutY="49.0" />
+            <Label fx:id="monsterBattleName1" layoutX="458.0" />
+            <Label fx:id="monsterBattleName2" layoutX="458.0" layoutY="95.0" />
+            <ProgressBar fx:id="monsterHPBar2" layoutX="458.0" layoutY="109.0" prefHeight="9.0" prefWidth="71.0" progress="0.0" visible="false" />
+            <ProgressBar fx:id="monsterHPBar1" layoutX="458.0" layoutY="14.0" prefHeight="9.0" prefWidth="71.0" progress="0.0" visible="false" />
+            <Label fx:id="defLabel" layoutX="530.0" layoutY="335.0" prefHeight="18.0" prefWidth="89.0" text="DEF:" visible="false" />
+            <Label fx:id="playerLevelLabel" alignment="CENTER_RIGHT" layoutX="88.0" layoutY="47.0" prefHeight="18.0" prefWidth="34.0" text="LV:" />
+            <Button fx:id="monsterButton1" layoutX="26.0" layoutY="230.0" mnemonicParsing="false" onAction="#monsterButton1Action" prefHeight="54.0" prefWidth="122.0" text="怪物1" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="monsterButton2" layoutX="162.0" layoutY="230.0" mnemonicParsing="false" onAction="#monsterButton2Action" prefHeight="54.0" prefWidth="122.0" text="怪物2" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="returnButton" layoutX="94.0" layoutY="291.0" mnemonicParsing="false" onAction="#returnAction" prefHeight="54.0" prefWidth="122.0" text="返回" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="winLoseLabel" alignment="CENTER" layoutX="-1.0" onMouseClicked="#stopBattleAction" prefHeight="374.0" prefWidth="640.0" style="-fx-background-color: white;" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Pane fx:id="itemPane" layoutX="32.0" layoutY="16.0" prefHeight="341.0" prefWidth="575.0" style="-fx-background-color: white;" visible="false">
+               <children>
+                  <Label fx:id="itemLabel1" layoutX="113.0" layoutY="14.0" onMouseClicked="#itemAction1" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemLabel2" layoutX="114.0" layoutY="59.0" onMouseClicked="#itemAction2" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemLabel3" layoutX="114.0" layoutY="104.0" onMouseClicked="#itemAction3" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemLabel4" layoutX="114.0" layoutY="149.0" onMouseClicked="#itemAction4" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemLabel5" layoutX="114.0" layoutY="194.0" onMouseClicked="#itemAction5" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="itemLabel6" layoutX="114.0" layoutY="239.0" onMouseClicked="#itemAction6" prefHeight="40.0" prefWidth="385.0" visible="false">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="143.0" layoutY="284.0" mnemonicParsing="false" onAction="#itemReturnButtonAction" prefHeight="40.0" prefWidth="289.0" text="返回">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="itemImageView1" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="itemImageView2" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="itemImageView3" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="itemImageView4" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="itemImageView5" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                  <ImageView fx:id="itemImageView6" fitHeight="40.0" fitWidth="40.0" layoutX="70.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+               </children>
+            </Pane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
